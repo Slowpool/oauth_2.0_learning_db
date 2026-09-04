@@ -7,12 +7,17 @@ import jakarta.persistence.*;
 @Table(name = "access_tokens")
 public final class AccessToken {
     @Id
+    // TODO what does this strategy influence on?
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Embedded
     // TODO what's going on here?
     @AttributeOverride(name = "value", column = @Column(name = "access_token", nullable = false))
     private AccessTokenValue value;
+
+    @Column(name = "client_id")
+    private String clientId;
 
     // TODO why there's no session at the moment of accessing it
     @ManyToMany(fetch = FetchType.EAGER)
@@ -27,6 +32,10 @@ public final class AccessToken {
         return value;
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
     public Set<ScopeEntity> getScopes() {
         return scopes;
     }
@@ -39,4 +48,8 @@ public final class AccessToken {
         this.value = value;
     }
 
+    public AccessToken(final AccessTokenValue value, final String clientId) {
+        this.value = value;
+        this.clientId = clientId;
+    }
 }

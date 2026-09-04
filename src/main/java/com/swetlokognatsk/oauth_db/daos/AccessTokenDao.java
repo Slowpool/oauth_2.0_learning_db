@@ -33,4 +33,8 @@ public final class AccessTokenDao {
             throw new AccessTokenNotFoundException();
         }
     }
+
+    public void save(final AccessToken accessToken) {
+        entityManager.persist(accessToken);
+    }
 }
