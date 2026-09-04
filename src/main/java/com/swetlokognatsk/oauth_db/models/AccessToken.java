@@ -17,7 +17,7 @@ public final class AccessToken {
     private AccessTokenValue value;
 
     @Column(name = "client_id")
-    private String clientId;
+    private int clientId;
 
     // TODO why there's no session at the moment of accessing it
     @ManyToMany(fetch = FetchType.EAGER)
@@ -32,7 +32,7 @@ public final class AccessToken {
         return value;
     }
 
-    public String getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
@@ -48,7 +48,7 @@ public final class AccessToken {
         this.value = value;
     }
 
-    public AccessToken(final AccessTokenValue value, final String clientId) {
+    public AccessToken(final AccessTokenValue value, final int clientId) {
         this.value = value;
         this.clientId = clientId;
     }

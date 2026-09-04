@@ -2,12 +2,15 @@ package com.swetlokognatsk.oauth_db.daos;
 
 import com.swetlokognatsk.oauth_db.models.AccessToken;
 import com.swetlokognatsk.oauth_db.models.AccessTokenValue;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import com.swetlokognatsk.oauth_db.AccessTokenNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
-public final class AccessTokenDao {
+public class AccessTokenDao {
 
     // TODO how it works https://www.baeldung.com/jpa-hibernate-persistence-context
     @PersistenceContext
@@ -34,6 +37,7 @@ public final class AccessTokenDao {
         }
     }
 
+    @Transactional
     public void save(final AccessToken accessToken) {
         entityManager.persist(accessToken);
     }
