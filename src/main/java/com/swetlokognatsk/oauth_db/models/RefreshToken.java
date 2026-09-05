@@ -54,7 +54,10 @@ public class RefreshToken {
     public RefreshToken() {
     }
 
-    public RefreshToken(final RefreshTokenValue refreshToken) {
+    public RefreshToken(final RefreshTokenValue refreshToken, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn) {
         this.value = refreshToken;
+        this.clientId = clientId;
+        this.createdOnProgrammatically = createdOnProgrammatically;
+        this.expiresIn = expiresIn;
     }
 }
