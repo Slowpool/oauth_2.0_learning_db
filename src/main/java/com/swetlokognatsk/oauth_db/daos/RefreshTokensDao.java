@@ -34,4 +34,11 @@ public class RefreshTokensDao {
     public void save(final RefreshToken refreshToken) {
         entityManager.persist(refreshToken);
     }
+
+    @Transactional
+    public void remove(final RefreshTokenValue refreshTokenValue) throws RefreshTokenNotFoundException {
+        // TODO is there a simpler way?
+        var refreshToken = findByValue(refreshTokenValue);
+        entityManager.remove(refreshToken);
+    }
 }
