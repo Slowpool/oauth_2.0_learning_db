@@ -1,6 +1,8 @@
 package com.swetlokognatsk.oauth_db.models;
 
+import java.time.LocalDateTime;
 import java.util.Set;
+import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +26,15 @@ public final class AccessToken {
     @JoinTable(inverseJoinColumns = @JoinColumn(name = "scope_id"))
     private Set<ScopeEntity> scopes;
 
+    @Column(name = "expires_in")
+    private int expiresIn;
+
+    @Column(name = "created_on_programmatically")
+    private LocalDateTime createdOnProgrammatically;
+
+    @Column(name = "created_on_db", insertable = false, updatable = false)
+    private LocalDateTime createdOnDb;
+
     public int getId() {
         return id;
     }
@@ -36,6 +47,19 @@ public final class AccessToken {
         return clientId;
     }
 
+    public int getExpiresIn() {
+        return expiresIn;
+    }
+
+    // experiment. what if you have two created_on
+    public LocalDateTime getCreatedOnProgrammatically() {
+        return createdOnProgrammatically;
+    }
+
+    public LocalDateTime getCreatedOnDb() {
+        return createdOnDb;
+    }
+
     public Set<ScopeEntity> getScopes() {
         return scopes;
     }
@@ -43,13 +67,10 @@ public final class AccessToken {
     public AccessToken() {
     }
 
-    public AccessToken(final int id, final AccessTokenValue value) {
-        this.id = id;
-        this.value = value;
-    }
-
-    public AccessToken(final AccessTokenValue value, final int clientId) {
+    public AccessToken(final AccessTokenValue value, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn) {
         this.value = value;
         this.clientId = clientId;
+        this.expiresIn = expiresIn;
+        this.createdOnProgrammatically = createdOnProgrammatically;
     }
 }
