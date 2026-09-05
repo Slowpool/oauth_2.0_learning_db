@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
-public class AccessTokenDao {
+public class AccessTokensDao {
 
     // TODO how it works https://www.baeldung.com/jpa-hibernate-persistence-context
     @PersistenceContext
