@@ -67,10 +67,11 @@ public final class AccessToken {
     public AccessToken() {
     }
 
-    public AccessToken(final AccessTokenValue value, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn) {
+    public AccessToken(final AccessTokenValue value, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn, final Set<ScopeEntity> scopes) {
         this.value = value;
         this.clientId = clientId;
         this.expiresIn = expiresIn;
         this.createdOnProgrammatically = createdOnProgrammatically;
+        this.scopes = scopes;
     }
 }

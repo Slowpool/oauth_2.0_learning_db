@@ -2,7 +2,6 @@ package com.swetlokognatsk.oauth_db.models;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -30,7 +29,7 @@ public class RefreshToken {
     private LocalDateTime createdOnDb;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(inverseJoinColumns = { @JoinColumn(name = "scope_id")})
+    @JoinTable(inverseJoinColumns = { @JoinColumn(name = "scope_id") })
     private Set<ScopeEntity> scopes;
 
     public int getId() {
@@ -60,10 +59,11 @@ public class RefreshToken {
     public RefreshToken() {
     }
 
-    public RefreshToken(final RefreshTokenValue refreshToken, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn) {
+    public RefreshToken(final RefreshTokenValue refreshToken, final int clientId, final LocalDateTime createdOnProgrammatically, final int expiresIn, final Set<ScopeEntity> scopes) {
         this.value = refreshToken;
         this.clientId = clientId;
         this.createdOnProgrammatically = createdOnProgrammatically;
         this.expiresIn = expiresIn;
+        this.scopes = scopes;
     }
 }
