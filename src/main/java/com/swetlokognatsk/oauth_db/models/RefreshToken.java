@@ -56,6 +56,10 @@ public class RefreshToken {
         return createdOnDb;
     }
 
+    public Set<ScopeEntity> getScopes() {
+        return scopes;
+    }
+
     public RefreshToken() {
     }
 
